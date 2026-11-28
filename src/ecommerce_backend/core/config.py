@@ -1,15 +1,17 @@
 from functools import lru_cache
-
 from typing import Literal
 
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
+
 class Settings(BaseSettings):
-    APP_NAME: str = "Ecommerce Backend API"
-    APP_VERSION: str = "0.1.0"
-    ENVIRONMENT: Literal["development", "staging", "production"] = "development"
-    DEBUG: bool = True
-    API_V1_PREFIX: str = "/api/v1"
+    """Application settings loaded from environment variables or .env file."""
+
+    app_name: str = "Ecommerce Backend API"
+    app_version: str = "0.1.0"
+    app_env: Literal["development", "staging", "production"] = "development"
+    debug: bool = False
+    api_v1_prefix: str = "/api/v1"
 
     model_config = SettingsConfigDict(
         env_file=".env",
@@ -21,6 +23,7 @@ class Settings(BaseSettings):
 
 @lru_cache
 def get_settings() -> Settings:
+    """Return a cached application settings instance."""
     return Settings()
 
 

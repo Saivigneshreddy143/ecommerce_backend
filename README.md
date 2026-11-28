@@ -3,7 +3,7 @@
 Standardized FastAPI backend repository for the multi-vendor marketplace.
 
 ## Tech Stack
-- **Python**: 3.11+
+- **Python**: 3.12+
 - **Framework**: FastAPI
 - **Server**: Uvicorn
 - **Configuration**: Pydantic Settings (`.env`)
@@ -35,6 +35,7 @@ ecommerce_backend/
 │                   └── health.py
 └── tests/
     ├── __init__.py
+    ├── test_config.py
     └── test_health.py
 ```
 
@@ -55,6 +56,8 @@ ecommerce_backend/
    ```bash
    cp .env.example .env
    ```
+   - `APP_ENV` supports `development`, `staging`, and `production`.
+   - `DEBUG` defaults to `false`; set `DEBUG=true` in your local `.env` for development debugging.
 
 ## Run the Application
 
