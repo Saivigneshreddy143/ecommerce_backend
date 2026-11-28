@@ -1,5 +1,4 @@
-from datetime import datetime, timezone
-
+from datetime import UTC, datetime
 from fastapi import APIRouter, status
 from pydantic import BaseModel
 
@@ -28,9 +27,9 @@ class HealthResponse(BaseModel):
 async def health_check() -> HealthResponse:
     """Return service health status and metadata."""
     return HealthResponse(
-        status="ok",
-        service=settings.APP_NAME,
-        version=settings.APP_VERSION,
-        environment=settings.ENVIRONMENT,
-        timestamp=datetime.now(timezone.utc),
+        status="healthy",
+        service=settings.app_name,
+        version=settings.app_version,
+        environment=settings.app_env,
+                timestamp=datetime.now(UTC),
     )
